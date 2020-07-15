@@ -154,7 +154,7 @@ var t;
 var frameN;
 var gotValidClick;
 var trialComponents;
-function trialRoutineBegin(trials) {
+function trialRoutineBegin(trialsLoop) {
   return function () {
     //------Prepare to start Routine 'trial'-------
     t = 0;
@@ -317,7 +317,7 @@ function endLoopIteration(thisScheduler, loop) {
       thisScheduler.stop();
       } else {
         const thisTrial = loop.getCurrentTrial();
-        if (typeof thisTrial === 'undefined' || !('isTrials' in thisTrial) || thisTrial.isTrials) {
+        if (typeof thisTrial === 'undefined' || !('isTrialsLoop' in thisTrial) || thisTrial.isTrialsLoop) {
           psychoJS.experiment.nextEntry(loop);
         }
       }
@@ -327,9 +327,9 @@ function endLoopIteration(thisScheduler, loop) {
 }
 
 
-function importConditions(trials) {
+function importConditions(trialsLoop) {
   return function () {
-    psychoJS.importAttributes(trials.getCurrentTrial());
+    psychoJS.importAttributes(trialsLoop.getCurrentTrial());
     return Scheduler.Event.NEXT;
     };
 }
